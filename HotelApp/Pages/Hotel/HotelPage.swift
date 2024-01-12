@@ -14,6 +14,8 @@ struct HotelPage: View {
     @State var choosedRoom: Bool = false
     @State var path: NavigationPath = NavigationPath()
     @State var currentPage: Int = 0
+    @State var showAlert: Bool = false
+    @State var textAlert: String = ""
     @State var rows = [
         GridItem(.flexible(minimum: 10, maximum: 300)),
         GridItem(.flexible(minimum: 100, maximum: 400))
@@ -42,8 +44,6 @@ struct HotelPage: View {
                     .tabViewStyle(PageTabViewStyle())
                     .frame(height: 250)
                     
-                    //                CustomPageIndicator(numberOfPages: 3, currentPage: currentPage)
-                    //                    .frame(maxHeight: 10)
                     Group {
                         RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
                             .foregroundStyle(MyColors.lightOrange)
@@ -98,6 +98,10 @@ struct HotelPage: View {
                                     .background(.gray.opacity(0.05))
                                     .foregroundStyle(.black.opacity(0.65))
                                     .clipShape(RoundedRectangle(cornerSize: CGSize(width: 5, height: 5)))
+                                    .onTapGesture {
+                                        textAlert = count
+                                        showAlert = true
+                                    }
                             }
                         })
                     }
@@ -163,17 +167,16 @@ struct HotelPage: View {
                     choosedRoom = true
                 }, label: {
                     Text("К выбору номера")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(15)
                 })
                 .navigationDestination(isPresented: $choosedRoom, destination: {
 //                    coordinator.openRoomsPage(path: path)
                     RoomsPage(path: $path)
                 })
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(.blue)
-                .foregroundColor(.white)
-                .cornerRadius(15)
-                
             }
             .padding(10)
             .background(.white)
@@ -185,41 +188,12 @@ struct HotelPage: View {
                 model.sharedHotel()
             }
         })
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Услуга"), message: Text(textAlert), dismissButton: .default(Text("OK")))
+        }
     }
 }
 
 #Preview {
     HotelPage( coordinator: HotelCoordinator())
 }
-
-//
-//struct CustomPageIndicator: View {
-//    var numberOfPages: Int
-//    var currentPage: Int
-//    
-//    init(numberOfPages: Int, currentPage: Int) {
-//        self.numberOfPages = numberOfPages
-//        self.currentPage = currentPage
-//    }
-//    var body: some View {
-//        GeometryReader { geometry in
-//            HStack(alignment: .center, spacing: 8) {
-//                
-//                ForEach(0 ..< numberOfPages) { page in
-//                    let color: Double = Double(currentPage)
-//                    
-//                    RoundedRectangle(cornerRadius: 5)
-//                        .fill(page == currentPage ? Color(red: 0, green: 0, blue: 0) : Color.black.opacity(0.3))
-//                        .frame(width: 10, height: 10)
-//                        .onAppear(perform: {
-//                            print("\(color)")
-//                        })
-//                    
-//                }
-//            }
-//            .frame(width: CGFloat(numberOfPages * 15))
-//            .offset(x: CGFloat(currentPage) * -15)
-//            .animation(.easeInOut, value: 0.3)
-//        }
-//    }
-//}

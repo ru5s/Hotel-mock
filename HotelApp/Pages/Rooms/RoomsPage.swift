@@ -20,12 +20,16 @@ struct RoomsPage: View {
             VStack(content: {
                 ScrollView(.vertical) {
                     ForEach((Array(model.rooms?.rooms ?? [])), id: \.self) { room in
+//                        NavigationLink("", isActive: $openReservation) {
+//                            ReservationPage()
+//                        }
                         
                         RoomCell(room: room, openReservation: $openReservation, idRoom: $idRoom)
                     }
                     .navigationDestination(isPresented: $openReservation, destination: {
 //                        $coordinator.openReservationPage(path: $path)
-                            ReservationPage()
+                        
+                        
                     })
                     
                 }

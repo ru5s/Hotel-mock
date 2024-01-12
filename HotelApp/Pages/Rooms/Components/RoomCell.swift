@@ -18,83 +18,85 @@ struct RoomCell: View {
     @Binding var idRoom: Int
     
     var body: some View {
-        VStack(alignment: .leading) {
-            TabView {
-                ForEach(Array(room.imageUrls.enumerated()), id: \.offset) { index, img in
-                    KFImage(URL(string: img))
-                        .resizable()
+        NavigationStack {
+            VStack(alignment: .leading) {
+                TabView {
+                    ForEach(Array(room.imageUrls.enumerated()), id: \.offset) { index, img in
+                        KFImage(URL(string: img))
+                            .resizable()
+                            .cornerRadius(15)
+                            .clipped()
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle())
+                .frame(height: 250)
+                
+                Text(room.name)
+                    .font(MyFonts.sfProDisplay_Medium(with: 22))
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack( content: {
+                    
+                        ForEach(room.peculiarities, id: \.self) { count in
+                            Text("\(count)")
+                                .lineLimit(1)
+                                .padding(.horizontal, 5)
+                                .padding(.vertical, 2)
+                                .font(MyFonts.sfProDisplay_Medium(with: 16))
+                                .background(.gray.opacity(0.05))
+                                .foregroundStyle(.black.opacity(0.65))
+                                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 5, height: 5)))
+                        }
+                    
+                })
+                .frame(height: 30)
+                .frame(maxWidth: .infinity)
+                }
+            
+                Group {
+                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                        .foregroundStyle(.specialBlue.opacity(0.1))
+                        .frame(width: 180, height: 29, alignment: .center)
+                        .overlay(alignment: .center) {
+                            HStack(content: {
+                                Button(action: {}, label: {
+                                    Text("Подробнее о номере \(Image(systemName: "chevron.right"))")
+                                        .foregroundStyle(.specialBlue)
+                                        .font(MyFonts.sfProDisplay_Regular(with: 16))
+                                })
+                                
+                            })
+                            .padding(.horizontal, 3)
+                        }
+                }
+                .padding(.top, 1)
+                
+                HStack(alignment: .bottom, content: {
+                    Text("от \(room.price)₽")
+                        .font(MyFonts.sfProDisplay_Medium(with: 30))
+                    Text("\(room.pricePer)")
+                        .font(MyFonts.sfProDisplay_Medium(with: 14))
+                        .foregroundStyle(Color.gray)
+                    Spacer()
+                })
+                .padding(.top, 10)
+                
+                NavigationLink {
+                    ReservationPage()
+                } label: {
+                    Label("Выбрать номер", image: "globe")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(.blue)
+                        .foregroundColor(.white)
                         .cornerRadius(15)
-                        .clipped()
                 }
             }
-            .tabViewStyle(PageTabViewStyle())
-            .frame(height: 250)
-            
-            Text(room.name)
-                .font(MyFonts.sfProDisplay_Medium(with: 22))
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack( content: {
-                
-                    ForEach(room.peculiarities, id: \.self) { count in
-                        Text("\(count)")
-                            .lineLimit(1)
-                            .padding(.horizontal, 5)
-                            .padding(.vertical, 2)
-                            .font(MyFonts.sfProDisplay_Medium(with: 16))
-                            .background(.gray.opacity(0.05))
-                            .foregroundStyle(.black.opacity(0.65))
-                            .clipShape(RoundedRectangle(cornerSize: CGSize(width: 5, height: 5)))
-                    }
-                
-            })
-            .frame(height: 30)
-            .frame(maxWidth: .infinity)
-            }
-        
-            Group {
-                RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                    .foregroundStyle(.specialBlue.opacity(0.1))
-                    .frame(width: 180, height: 29, alignment: .center)
-                    .overlay(alignment: .center) {
-                        HStack(content: {
-                            Button(action: {}, label: {
-                                Text("Подробнее о номере \(Image(systemName: "chevron.right"))")
-                                    .foregroundStyle(.specialBlue)
-                                    .font(MyFonts.sfProDisplay_Regular(with: 16))
-                            })
-                            
-                        })
-                        .padding(.horizontal, 3)
-                    }
-            }
-            .padding(.top, 1)
-            
-            HStack(alignment: .bottom, content: {
-                Text("от \(room.price)₽")
-                    .font(MyFonts.sfProDisplay_Medium(with: 30))
-                Text("\(room.pricePer)")
-                    .font(MyFonts.sfProDisplay_Medium(with: 14))
-                    .foregroundStyle(Color.gray)
-                Spacer()
-            })
-            .padding(.top, 10)
-            
-            Button(action: {
-                openReservation = true
-                
-            }, label: {
-                Text("Выбрать номер")
-            })
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(.blue)
-            .foregroundColor(.white)
+            .padding(15)
+            .background(.white)
             .cornerRadius(15)
         }
-        .padding(15)
-        .background(.white)
-        .cornerRadius(15)
+        
     }
     
 }

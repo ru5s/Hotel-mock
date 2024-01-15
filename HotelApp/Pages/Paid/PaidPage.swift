@@ -44,9 +44,12 @@ struct PaidPage: View {
                             .cornerRadius(15)
                     })
                     .padding(15)
-                    .navigationDestination(isPresented: $toHotelPage) {
-                        HotelPage(coordinator: HotelCoordinator())
-                    }
+                    
+                    NavigationLink("", destination: EmptyView())
+                        .transition(.opacity)
+                        .fullScreenCover(isPresented: $toHotelPage, content: {
+                            HotelPage(coordinator: HotelCoordinator())
+                        })
                 }
                 .navigationTitle("Заказ оплачен")
                 .navigationBarTitleDisplayMode(.inline)

@@ -259,9 +259,11 @@ struct ReservationPage: View {
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Ошибка"), message: Text("Заполните все поля"), dismissButton: .default(Text("OK")))
             }
-            .navigationDestination(isPresented: $openPayedPage) {
-                PaidPage()
-            }
+            NavigationLink("", destination: EmptyView())
+                .transition(.opacity)
+                .fullScreenCover(isPresented: $openPayedPage, content: {
+                    PaidPage()
+                })
         }
     }
     func isValidEmail(_ email: String) -> Bool {

@@ -16,9 +16,9 @@ struct RoomCell: View {
     @State var room: Room
     @Binding var openReservation: Bool
     @Binding var idRoom: Int
+    @Binding var path: NavigationPath
     
     var body: some View {
-        NavigationStack {
             VStack(alignment: .leading) {
                 TabView {
                     ForEach(Array(room.imageUrls.enumerated()), id: \.offset) { index, img in
@@ -47,7 +47,6 @@ struct RoomCell: View {
                                 .foregroundStyle(.black.opacity(0.65))
                                 .clipShape(RoundedRectangle(cornerSize: CGSize(width: 5, height: 5)))
                         }
-                    
                 })
                 .frame(height: 30)
                 .frame(maxWidth: .infinity)
@@ -81,33 +80,38 @@ struct RoomCell: View {
                 })
                 .padding(.top, 10)
                 
-                NavigationLink {
-                    ReservationPage()
+                Button {
+                    path.append(AllPages.reservation)
                 } label: {
-                    Label("Выбрать номер", image: "globe")
+                    Text("Выбрать номер")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(.blue)
                         .foregroundColor(.white)
                         .cornerRadius(15)
                 }
+                
             }
             .padding(15)
             .background(.white)
             .cornerRadius(15)
-        }
-        
     }
-    
 }
 
 #Preview {
-    RoomCell(room: .init(id: 1, name: "Стандартный номер с видом на бассейн", price: 186600, pricePer: "За 7 ночей с перелетом", peculiarities: [
+    RoomCell(room: .init(
+        id: 1,
+        name: "Стандартный номер с видом на бассейн",
+        price: 186600, pricePer: "За 7 ночей с перелетом",
+        peculiarities: [
         "Включен только завтрак",
         "Кондиционер"],
-                         imageUrls: [
+        imageUrls: [
         "https://www.atorus.ru/sites/default/files/upload/image/News/56871/%D1%80%D0%B8%D0%BA%D1%81%D0%BE%D1%81%20%D1%81%D0%B8%D0%B3%D0%B5%D0%B9%D1%82.jpg",
         "https://q.bstatic.com/xdata/images/hotel/max1024x768/267647265.jpg?k=c8233ff42c39f9bac99e703900a866dfbad8bcdd6740ba4e594659564e67f191&o=",
         "https://worlds-trip.ru/wp-content/uploads/2022/10/white-hills-resort-5.jpeg"
-                         ]), openReservation: .constant(false), idRoom: .constant(1))
+                         ]), 
+             openReservation: .constant(false),
+             idRoom: .constant(1),
+             path: .constant(NavigationPath()))
 }

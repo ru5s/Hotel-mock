@@ -8,42 +8,26 @@
 import SwiftUI
 
 struct RoomsPage: View {
-    @ObservedObject var model: RoomsViewModel = RoomsViewModel()
-    @ObservedObject var coordinator: RoomsCoordinator = RoomsCoordinator()
+    @StateObject var model: RoomsViewModel = RoomsViewModel()
     @State var openReservation: Bool = false
     @Binding var path: NavigationPath
     @State var idRoom: Int = 1
     var body: some View {
-        
-        NavigationStack(path: $path, root: {
-            
-            VStack(content: {
-                ScrollView(.vertical) {
-                    ForEach((Array(model.rooms?.rooms ?? [])), id: \.self) { room in
-//                        NavigationLink("", isActive: $openReservation) {
-//                            ReservationPage()
-//                        }
-                        
-                        RoomCell(room: room, openReservation: $openReservation, idRoom: $idRoom)
-                    }
-                    .navigationDestination(isPresented: $openReservation, destination: {
-//                        $coordinator.openReservationPage(path: $path)
-                        
-                        
-                    })
-                    
+        VStack(content: {
+            ScrollView(.vertical) {
+                ForEach((Array(model.rooms?.rooms ?? [])), id: \.self) { room in
+                    RoomCell(room: room, openReservation: $openReservation, idRoom: $idRoom, path: $path)
                 }
-                .scrollBounceBehavior(.basedOnSize)
-                .navigationTitle("Steigenberger Makadi")
-                .font(MyFonts.sfProDisplay_Medium(with: 22))
-                .navigationBarTitleDisplayMode(.inline)
-                .background(.specialBackground)
+            }
+            .scrollBounceBehavior(.basedOnSize)
+            .navigationTitle("Steigenberger Makadi")
+            .font(MyFonts.sfProDisplay_Medium(with: 22))
+            .navigationBarTitleDisplayMode(.inline)
+            .background(.specialBackground)
+            .onAppear(perform: {
+                model.getRomms()
             })
         })
-        .onAppear(perform: {
-            model.getRomms()
-        })
-                        
     }
 }
 

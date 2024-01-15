@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PaidPage: View {
-    @State var toHotelPage: Bool = false
+    @Binding var path: NavigationPath
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, content: {
@@ -34,7 +34,7 @@ struct PaidPage: View {
                         .frame(maxWidth: .infinity)
                         .foregroundStyle(.gray.opacity(0.5))
                     Button(action: {
-                        toHotelPage = true
+                        path.removeLast(path.count)
                     }, label: {
                         Text("Супер")
                             .frame(maxWidth: .infinity)
@@ -44,12 +44,6 @@ struct PaidPage: View {
                             .cornerRadius(15)
                     })
                     .padding(15)
-                    
-                    NavigationLink("", destination: EmptyView())
-                        .transition(.opacity)
-                        .fullScreenCover(isPresented: $toHotelPage, content: {
-                            HotelPage(coordinator: HotelCoordinator())
-                        })
                 }
                 .navigationTitle("Заказ оплачен")
                 .navigationBarTitleDisplayMode(.inline)
@@ -59,5 +53,5 @@ struct PaidPage: View {
 }
 
 #Preview {
-    PaidPage()
+    PaidPage(path: .constant(NavigationPath()))
 }

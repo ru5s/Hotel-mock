@@ -12,7 +12,7 @@ struct HotelPage: View {
     @ObservedObject var model: HotelViewModel = HotelViewModel()
     @ObservedObject var coordinator: HotelCoordinator
     @State var choosedRoom: Bool = false
-    @State var path: NavigationPath = NavigationPath()
+//    @State var path: NavigationPath = NavigationPath()
     @State var currentPage: Int = 0
     @State var showAlert: Bool = false
     @State var textAlert: String = ""
@@ -22,7 +22,7 @@ struct HotelPage: View {
         ]
     
     var body: some View {
-        NavigationStack(path: $path, root: {
+        NavigationStack(path: $coordinator.path) {
             ScrollView(.vertical) {
                 Spacer()
                 VStack(alignment: .leading) {
@@ -163,25 +163,22 @@ struct HotelPage: View {
             Spacer()
             
             VStack {
-                Button(action: {
-                    choosedRoom = true
-                }, label: {
-                    Text("К выбору номера")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(15)
-                })
-                .navigationDestination(isPresented: $choosedRoom, destination: {
-//                    coordinator.openRoomsPage(path: path)
-                    RoomsPage(path: $path)
-                })
+                Button("К выбору номера") {
+                    coordinator.path.append(AllPages.room)
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(.blue)
+                .foregroundColor(.white)
+                .cornerRadius(15)
+                .navigationDestination(for: AllPages.self) { value in
+                    coordinator.openAllPages(type: value, path: $coordinator.path)
+                }
             }
             .padding(10)
             .background(.white)
             .cornerRadius(15)
-        })
+        }
         .padding(0)
         .onAppear(perform: {
             model.getHotel {
@@ -195,5 +192,5 @@ struct HotelPage: View {
 }
 
 #Preview {
-    HotelPage( coordinator: HotelCoordinator())
+    HotelPage(coordinator: HotelCoordinator())
 }

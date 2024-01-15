@@ -8,10 +8,20 @@
 import Foundation
 import SwiftUI
 
-class HotelCoordinator: ObservableObject {
+enum AllPages {
+    case room
+    case reservation
+}
 
-    func openRoomsPage(path: NavigationPath) -> some View {
-        let roomsPage = RoomsPage(path: .constant(path))
-        return roomsPage
+class HotelCoordinator: ObservableObject {
+    @Published var path: NavigationPath = NavigationPath()
+
+    @ViewBuilder func openAllPages(type: AllPages, path: Binding<NavigationPath>) -> some View {
+        switch type {
+        case .room:
+            RoomsPage(path: path)
+        case .reservation:
+            ReservationPage(path: path)
+        }
     }
 }

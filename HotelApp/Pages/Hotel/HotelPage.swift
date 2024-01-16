@@ -12,7 +12,6 @@ struct HotelPage: View {
     @ObservedObject var model: HotelViewModel = HotelViewModel()
     @ObservedObject var coordinator: HotelCoordinator = HotelCoordinator()
     @State var choosedRoom: Bool = false
-//    @State var path: NavigationPath = NavigationPath()
     @State var currentPage: Int = 0
     @State var showAlert: Bool = false
     @State var textAlert: String = ""
@@ -86,7 +85,6 @@ struct HotelPage: View {
                         Spacer()
                     }
                     
-                        
                     HStack(alignment: .bottom, spacing: 5) {
                         LazyVGrid(columns: rows, alignment: .leading, content: {
                             ForEach(model.hotel?.aboutHotel.peculiarities ?? [], id: \.self) { count in
@@ -150,9 +148,6 @@ struct HotelPage: View {
                 .cornerRadius(15)
                 
                 Spacer()
-                
-               
-                
             }
             .scrollBounceBehavior(.basedOnSize)
             .navigationTitle("Отель")

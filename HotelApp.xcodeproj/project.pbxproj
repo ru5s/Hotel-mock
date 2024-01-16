@@ -166,7 +166,6 @@
 		B5EAD90D2B4A9FD10024E1E0 /* Hotel */ = {
 			isa = PBXGroup;
 			children = (
-				B5EFF8412B4BFD2300058CEC /* Components */,
 				B5EAD9212B4AA2BD0024E1E0 /* HotelPage.swift */,
 				B5EAD9232B4AA2C90024E1E0 /* HotelViewModel.swift */,
 				B5EAD9272B4AA3D20024E1E0 /* HotelModel.swift */,
@@ -222,13 +221,6 @@
 				B5EAD9132B4AA1F30024E1E0 /* NetworkService.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		B5EFF8412B4BFD2300058CEC /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		B5EFF8452B4C7B0D00058CEC /* Fonts */ = {

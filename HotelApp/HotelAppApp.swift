@@ -10,9 +10,8 @@ import SwiftUI
 @main
 struct HotelAppApp: App {
     var body: some Scene {
-        @StateObject var coordinator: HotelCoordinator = HotelCoordinator()
         WindowGroup {
-            HotelPage(coordinator: coordinator)
+            HotelPage()
         }
     }
 }

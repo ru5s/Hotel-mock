@@ -10,7 +10,7 @@ import Kingfisher
 
 struct HotelPage: View {
     @ObservedObject var model: HotelViewModel = HotelViewModel()
-    @ObservedObject var coordinator: HotelCoordinator
+    @ObservedObject var coordinator: HotelCoordinator = HotelCoordinator()
     @State var choosedRoom: Bool = false
 //    @State var path: NavigationPath = NavigationPath()
     @State var currentPage: Int = 0
@@ -192,5 +192,5 @@ struct HotelPage: View {
 }
 
 #Preview {
-    HotelPage(coordinator: HotelCoordinator())
+    HotelPage()
 }

@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  HotelApp
+
+  Created by Ruslan Ismailov on 26/01/24.
+  
+*/
+
+// Network Error
+"clientError" = "An unknown error has occurred, please try again later";
+"serverError" = "There are technical problems, we try to solve this problem as soon as possible";
+"incorrectCode" = "The verification code is not entered correctly";
+"notAuthorizationRequest" = "You have not logged in. Please log in.";
+"invalidUrl" = "Invalid URL";
+"defaultError" = "There is no internet connection";
+"coudntGetData" = "Couldn't get data from the server";
+
+"True" = "Yes";
+"False" = "No";

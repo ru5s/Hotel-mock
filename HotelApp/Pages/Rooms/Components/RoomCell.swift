@@ -17,7 +17,6 @@ struct RoomCell: View {
     @Binding var openReservation: Bool
     @Binding var idRoom: Int
     @Binding var path: NavigationPath
-    
     var body: some View {
             VStack(alignment: .leading) {
                 TabView {

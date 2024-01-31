@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B508256A2B63CDF600D19402 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50825692B63CDF600D19402 /* NetworkError.swift */; };
+		B508256C2B63CE3900D19402 /* NetworkTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508256B2B63CE3900D19402 /* NetworkTypeError.swift */; };
+		B508256F2B63D0C100D19402 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B50825712B63D0C100D19402 /* Localizable.strings */; };
 		B53C5C2D2B4EFD6300C8C893 /* TourstField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C5C2C2B4EFD6300C8C893 /* TourstField.swift */; };
 		B53C5C2F2B4FEC0700C8C893 /* SummaryFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C5C2E2B4FEC0700C8C893 /* SummaryFields.swift */; };
 		B5515B0E2B4B051B00C04B17 /* HotelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5515B0D2B4B051B00C04B17 /* HotelCoordinator.swift */; };
@@ -43,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B50825692B63CDF600D19402 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		B508256B2B63CE3900D19402 /* NetworkTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTypeError.swift; sourceTree = "<group>"; };
+		B50825702B63D0C100D19402 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B53C5C2C2B4EFD6300C8C893 /* TourstField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourstField.swift; sourceTree = "<group>"; };
 		B53C5C2E2B4FEC0700C8C893 /* SummaryFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryFields.swift; sourceTree = "<group>"; };
 		B5515B0D2B4B051B00C04B17 /* HotelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelCoordinator.swift; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 				B5EAD8FD2B4A988C0024E1E0 /* HotelAppApp.swift */,
 				B5EAD9012B4A988F0024E1E0 /* Assets.xcassets */,
 				B5EAD9032B4A988F0024E1E0 /* Preview Content */,
+				B50825712B63D0C100D19402 /* Localizable.strings */,
 			);
 			path = HotelApp;
 			sourceTree = "<group>";
@@ -219,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				B5EAD9132B4AA1F30024E1E0 /* NetworkService.swift */,
+				B50825692B63CDF600D19402 /* NetworkError.swift */,
+				B508256B2B63CE3900D19402 /* NetworkTypeError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -325,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EFF8492B4C7B2A00058CEC /* SF-Pro-Display-Medium.otf in Resources */,
+				B508256F2B63D0C100D19402 /* Localizable.strings in Resources */,
 				B5EFF8512B4C8B5E00058CEC /* SF-Pro-Display-Bold.otf in Resources */,
 				B5EAD9052B4A988F0024E1E0 /* Preview Assets.xcassets in Resources */,
 				B5EFF8482B4C7B2A00058CEC /* SF-Pro-Display-Regular.otf in Resources */,
@@ -345,6 +355,7 @@
 				B5EAD91C2B4AA2670024E1E0 /* ReservationViewModel.swift in Sources */,
 				B5EAD9202B4AA2810024E1E0 /* RoomsViewModel.swift in Sources */,
 				B5EFF84F2B4C7BBA00058CEC /* ColorExtension.swift in Sources */,
+				B508256A2B63CDF600D19402 /* NetworkError.swift in Sources */,
 				B5EAD92A2B4AAE2C0024E1E0 /* RoomsModel.swift in Sources */,
 				B5515B0E2B4B051B00C04B17 /* HotelCoordinator.swift in Sources */,
 				B5EAD9282B4AA3D20024E1E0 /* HotelModel.swift in Sources */,
@@ -361,6 +372,7 @@
 				B5EFF85E2B4ED32900058CEC /* ReservationModel.swift in Sources */,
 				B5DE51C92B513BE2003A3B62 /* TouristInformation.swift in Sources */,
 				B5EAD91A2B4AA25A0024E1E0 /* ReservationPage.swift in Sources */,
+				B508256C2B63CE3900D19402 /* NetworkTypeError.swift in Sources */,
 				B5DE51C52B502C74003A3B62 /* TouristFieldCell.swift in Sources */,
 				B5EFF8562B4E629E00058CEC /* RoomCell.swift in Sources */,
 				B53C5C2D2B4EFD6300C8C893 /* TourstField.swift in Sources */,
@@ -369,6 +381,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B50825712B63D0C100D19402 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B50825702B63D0C100D19402 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B5EAD9062B4A988F0024E1E0 /* Debug */ = {

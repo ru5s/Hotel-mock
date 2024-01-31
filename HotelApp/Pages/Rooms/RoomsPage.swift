@@ -16,6 +16,7 @@ struct RoomsPage: View {
         VStack(content: {
             ScrollView(.vertical) {
                 ForEach((Array(model.rooms?.rooms ?? [])), id: \.self) { room in
+                    
                     RoomCell(room: room, openReservation: $openReservation, idRoom: $idRoom, path: $path)
                 }
             }
